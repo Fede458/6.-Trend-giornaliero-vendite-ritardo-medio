@@ -1,0 +1,10 @@
+-- 6. Andamento delle vendite e ritardi medi giornalieri (ultimi 7 giorni)
+SELECT 
+  date(B.data_emissione) AS giorno,
+  COUNT(*) AS biglietti_venduti,
+  ROUND(AVG(T.ritardo_minuti), 2) AS ritardo_medio
+FROM Biglietto B
+JOIN Tratta T ON B.id_tratta = T.id_tratta
+GROUP BY giorno
+ORDER BY giorno DESC
+LIMIT 7;
